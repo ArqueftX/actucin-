@@ -216,6 +216,8 @@ def collect(config: dict, state: dict, ignore_age: bool = False) -> list[dict]:
 
     # Les plus fiables d'abord, puis les plus récents
     items.sort(key=lambda i: (-i["score"], -i["ts"]))
+    if ignore_age:  # mode seed : on mémorise tout, sans plafond
+        return items
     return items[: settings.get("max_items_per_run", 25)]
 
 
