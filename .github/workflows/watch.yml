@@ -10,7 +10,7 @@ on:
         required: false
         default: "run"
         type: choice
-        options: [run, check, seed, dry-run]
+        options: [run, check, seed, dry-run, replay]
 
 concurrency:
   group: cinewatch
@@ -42,6 +42,7 @@ jobs:
             seed)    python watcher.py --seed ;;
             dry-run) python watcher.py --dry-run ;;
             *)       python watcher.py ;;
+            replay)  python watcher.py --replay ;;
           esac
 
       - name: Sauvegarder l'état
