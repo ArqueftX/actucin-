@@ -308,6 +308,8 @@ def main() -> int:
                         help="teste la validité de chaque flux")
     parser.add_argument("--dry-run", action="store_true",
                         help="affiche sans poster sur Discord")
+    parser.add_argument("--replay", action="store_true",
+                        help="renvoie les articles récents même déjà vus")
     args = parser.parse_args()
 
     config = yaml.safe_load(CONFIG_PATH.read_text(encoding="utf-8"))
@@ -321,6 +323,14 @@ def main() -> int:
     if not webhook_main and not args.dry_run:
         log("❌ DISCORD_WEBHOOK_NEWS n'est pas défini.")
         return 1
+    if args.replay:
+        config.setdefault("settings", {})["max_items_per_run"] = 200
+        items = collect(config, {"seen": []})
+        threshold = config.get("settings", {}).get("rumor_threshold", 7)
+        post_to_discord(webhook_main, [build_embed(i) for i in items if i["score"] >= threshold])
+        post_to_discord(webhook_rumors, [build_embed(i) for i in items if i["score"] < threshold])
+        log(f"🔁 {len(items)} article(s) rejoué(s), état inchangé.")
+        return 0
 
     state = load_state()
     first_run = not state.get("initialized")
