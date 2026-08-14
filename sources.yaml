@@ -1,0 +1,186 @@
+# ============================================================
+#  CinéWatch — configuration des sources
+# ------------------------------------------------------------
+#  score : fiabilité de 1 à 10
+#     10  = communiqué officiel / studio
+#      9  = trade press (Deadline, Variety, THR) — quasi-officiel
+#      7-8 = presse spécialisée sérieuse
+#      5-6 = agrégateurs, scoops relayés
+#      1-4 = rumeur pure, forum, insider non vérifié
+#
+#  include_any : (optionnel) l'article n'est retenu que si un de
+#                ces mots apparaît dans le titre ou le résumé.
+#                Sert à filtrer les sources très bavardes.
+# ============================================================
+
+settings:
+  # Ignorer les articles plus vieux que X heures (anti-flood)
+  max_age_hours: 12
+  # Nombre max d'articles envoyés par exécution (garde-fou)
+  max_items_per_run: 25
+  # Seuil : au-dessus ou égal → salon "officiel", en-dessous → salon "rumeurs"
+  rumor_threshold: 7
+
+# Mots qui font rejeter un article, quelle que soit la source
+mute_keywords:
+  - "obituary"
+  - "dies at"
+  - "has died"
+  - "passed away"
+  - "job opening"
+  - "we're hiring"
+  - "subscribe to"
+  - "daily crossword"
+  - "horoscope"
+
+# Filtre appliqué aux sources marquées `needs_filter: true`
+# (Reddit, agrégateurs très bruyants)
+relevance_keywords:
+  - "trailer"
+  - "teaser"
+  - "first look"
+  - "poster"
+  - "cast"
+  - "casting"
+  - "director"
+  - "sequel"
+  - "reboot"
+  - "renewed"
+  - "canceled"
+  - "cancelled"
+  - "release date"
+  - "box office"
+  - "rumor"
+  - "rumour"
+  - "reportedly"
+  - "exclusive"
+  - "set photo"
+  - "leak"
+  - "greenlit"
+  - "in talks"
+  - "series"
+  - "season"
+  - "marvel"
+  - "mcu"
+  - "dcu"
+  - "james gunn"
+  - "a24"
+  - "netflix"
+  - "hbo"
+  - "disney+"
+  - "a24"
+  - "cannes"
+  - "oscar"
+  - "sundance"
+
+sources:
+
+  # ---------- TRADE / QUASI-OFFICIEL (9-10) ----------
+  - name: "Deadline"
+    url: "https://deadline.com/feed/"
+    score: 9
+    tag: "Trade"
+
+  - name: "Variety"
+    url: "https://variety.com/feed/"
+    score: 9
+    tag: "Trade"
+
+  - name: "The Hollywood Reporter"
+    url: "https://www.hollywoodreporter.com/feed/"
+    score: 9
+    tag: "Trade"
+
+  - name: "IndieWire"
+    url: "https://www.indiewire.com/feed/"
+    score: 9
+    tag: "Indé"
+
+  - name: "The Wrap"
+    url: "https://www.thewrap.com/feed/"
+    score: 8
+    tag: "Trade"
+
+  # ---------- PRESSE SPÉCIALISÉE (7-8) ----------
+  - name: "/Film"
+    url: "https://www.slashfilm.com/feed/"
+    score: 7
+    tag: "Presse"
+
+  - name: "Collider"
+    url: "https://collider.com/feed/"
+    score: 7
+    tag: "Presse"
+
+  - name: "Empire"
+    url: "https://www.empireonline.com/feeds/all/"
+    score: 8
+    tag: "Presse"
+
+  - name: "IGN — Movies"
+    url: "https://feeds.ign.com/ign/movies-all"
+    score: 7
+    tag: "Presse"
+
+  - name: "IGN — TV"
+    url: "https://feeds.ign.com/ign/tv-all"
+    score: 7
+    tag: "Presse"
+
+  - name: "Screen Rant"
+    url: "https://screenrant.com/feed/"
+    score: 6
+    tag: "Presse"
+    needs_filter: true
+
+  - name: "ComicBook.com"
+    url: "https://comicbook.com/feed/"
+    score: 6
+    tag: "Super-héros"
+    needs_filter: true
+
+  - name: "Screen Daily"
+    url: "https://www.screendaily.com/feeds/rss/news"
+    score: 8
+    tag: "Indé"
+
+  # ---------- RUMEURS / SCOOPERS (3-6) ----------
+  - name: "The Cosmic Circus"
+    url: "https://thecosmiccircus.com/feed/"
+    score: 5
+    tag: "Scoop"
+
+  - name: "The InSneider (Jeff Sneider)"
+    url: "https://www.theinsneider.com/feed"
+    score: 5
+    tag: "Scoop"
+
+  - name: "r/movies"
+    url: "https://www.reddit.com/r/movies/hot/.rss?limit=40"
+    score: 4
+    tag: "Reddit"
+    needs_filter: true
+
+  - name: "r/television"
+    url: "https://www.reddit.com/r/television/hot/.rss?limit=40"
+    score: 4
+    tag: "Reddit"
+    needs_filter: true
+
+  - name: "r/boxoffice"
+    url: "https://www.reddit.com/r/boxoffice/hot/.rss?limit=25"
+    score: 4
+    tag: "Reddit"
+    needs_filter: true
+
+  - name: "r/MarvelStudiosSpoilers"
+    url: "https://www.reddit.com/r/MarvelStudiosSpoilers/hot/.rss?limit=25"
+    score: 3
+    tag: "MCU"
+    needs_filter: true
+
+  - name: "r/DC_Cinematic"
+    url: "https://www.reddit.com/r/DC_Cinematic/hot/.rss?limit=25"
+    score: 3
+    tag: "DCU"
+    needs_filter: true
