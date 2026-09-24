@@ -1,8 +1,5 @@
 {
  "seen": [
-  "https://www.thewrap.com/media-platforms/journalism/los-angeles-news-helicopter-crashes-on-the-job-killing-at-least-one",
-  "https://comicbook.com/tv-shows/feature/marvel-has-just-given-the-dcu-its-biggest-opportunity-yet-and-so-far-theyre-winning",
-  "https://www.hollywoodreporter.com/movies/movie-news/zach-cregger-resident-evil-first-reactions-1236703078",
   "https://variety.com/2026/film/festivals/cate-blanchett-tokyo-festival-displacement-film-fund-shorts-1236863090",
   "https://variety.com/2026/music/news/drake-fear-of-missing-out-film-new-music-ella-langley-remix-1236863844",
   "https://collider.com/best-mystery-movies-since-2000-ranked",
@@ -3999,8 +3996,11 @@
   "https://collider.com/james-bond-day-of-the-jackal-spy-thriller-eddie-redmayne",
   "https://collider.com/robert-pattinson-primetime-the-drama-odyssey-challenging-roles",
   "https://collider.com/chicago-fire-season-15-cast-exits-joe-cruz-dermot-mulroney-new-showrunner",
-  "https://variety.com/2026/scene/news/varietys-power-of-women-jennifer-hudson-sharon-stone-1236873980"
+  "https://variety.com/2026/scene/news/varietys-power-of-women-jennifer-hudson-sharon-stone-1236873980",
+  "https://variety.com/2026/film/news/sean-gunn-retired-rocket-raccoon-guardians-of-the-galaxy-1236873997",
+  "https://screenrant.com/one-last-shot-scott-adkins-expendables-meets-olympus-has-fallen",
+  "https://screenrant.com/evil-stephen-king-approved-horror-no-jumpscares"
  ],
  "initialized": true,
- "updated_at": "2026-09-24T04:47:43.254457+00:00"
+ "updated_at": "2026-09-24T05:11:43.571401+00:00"
 }
